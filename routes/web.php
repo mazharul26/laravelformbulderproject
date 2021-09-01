@@ -18,10 +18,13 @@ use App\Http\Controllers\PackageInfoController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::get('admindashboard', [DashboardController::class,'index']);
-Route::resource('form', PackageInfoController::class);
+
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+Route::get('/dashboard', [DashboardController::class, 'index'])
+               ->name('admindashboard');
+Route::resource('admindashboard12', DashboardController::class)->middleware(['auth']);
+Route::resource('form', PackageInfoController::class);
