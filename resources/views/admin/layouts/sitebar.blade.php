@@ -1,6 +1,6 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="{{ route('admindashboard') }}" class="brand-link text-center">
+    <a href="{{ route('dashboard.index') }}" class="brand-link text-center">
       <span class="brand-text font-weight-light text-center">Dashboard</span>
     </a>
 
@@ -54,7 +54,7 @@
                   </li>
                 </ul>
               </li>
-         
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
