@@ -18,4 +18,4 @@ use App\Http\Controllers\PackageInfoController;
 
 require __DIR__.'/auth.php';
 Route::resource('dashboard', DashboardController::class)->middleware(['auth']);
-Route::resource('form', PackageInfoController::class)->middleware(['auth']);
+Route::resource('employeeinfo', PackageInfoController::class)->middleware(['auth']);

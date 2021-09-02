@@ -14,7 +14,7 @@ class PackageInfoController extends Controller
      */
     public function index()
     {
-        return view("admin.formbulder.index");
+        return view("admin.formbulder.formvalidation");
     }
 
     /**
