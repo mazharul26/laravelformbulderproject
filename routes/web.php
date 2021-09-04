@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\PackageInfoController;
+use App\Http\Controllers\Admin\EmployeeInfoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,4 +18,4 @@ use App\Http\Controllers\PackageInfoController;
 
 require __DIR__.'/auth.php';
 Route::resource('dashboard', DashboardController::class)->middleware(['auth']);
-Route::resource('employeeinfo', PackageInfoController::class)->middleware(['auth']);
+Route::resource('employeeinfo', EmployeeInfoController::class)->middleware(['auth']);

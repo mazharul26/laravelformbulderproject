@@ -48,11 +48,12 @@
                                 <x-input id="mobile_no" class="form-control" type="text" name="mobile_no" :value="old('mobile_no')" required autofocus />
                             </div>
                             <div class="form-group">
-                                {{ Form::label('Employee Designation', null, ['class' => 'control-label']) }}
+                                {{ Form::label('Educational Qualification', null, ['class' => 'control-label']) }}
                                 @php
-                                    echo Form::checkbox('designation', '1').' Maneger ';
-                                    echo Form::checkbox('designation', '2').' Chairmen ';
-                                    echo Form::checkbox('designation', '3').' Officer ';
+                                    echo Form::checkbox('designation', '1').' SSC ';
+                                    echo Form::checkbox('designation', '2').' HSC ';
+                                    echo Form::checkbox('designation', '3').' Honous ';
+                                    echo Form::checkbox('designation', '4').' Masters ';
                                 @endphp
                             </div>
                             <div class="form-group">
