@@ -61,7 +61,7 @@
                     </td>
                     <td>
                     	@foreach($item->education as $education)
-                    	{{$education->educational_qualification ?? ''}}
+                    	{{$education->educational_qualification ?? ''}} |
                     	@endforeach
                     </td>
 

@@ -26,21 +26,22 @@
                     </div>
                     <div class="card-body">
                         @include('massage.errormassage')
-                        <form action="{{route('admin.employeeinfo.store')}}" name="contact-form" method="post" enctype="multipart/form-data">
+                        <form action="{{route('admin.employeeinfo.update',$item->id)}}" name="contact-form" method="post" enctype="multipart/form-data">
                            @csrf
+                           @method('put')
                             <div class="form-group">
                                 <x-label for="employee_name" :value="__('Name')" />
                                 <x-input  type="text" id="employee_name" class="form-control"  
-                                name="employee_name" :value="old('employee_name')" required autofocus />
+                                name="employee_name" :value="$item->employee_name ?? ''" required autofocus />
                             </div>
                             <div class="form-group">
                                 <x-label for="employee_email" :value="__('Email')" />
                                 <x-input id="email" class="form-control" type="email"
-                                 name="employee_email" :value="old('employee_email')" required autofocus />
+                                 name="employee_email" :value="$item->employee_email ?? ''" required autofocus />
                             </div>
                             <div class="form-group">
                                 <x-label for="employee_mobile_no" :value="__('Mobile No')" />
-                                <x-input id="employee_mobile_no" class="form-control" type="text" name="employee_mobile_no" :value="old('employee_mobile_no')" required autofocus />
+                                <x-input id="employee_mobile_no" class="form-control" type="text" name="employee_mobile_no" :value="$item->employee_mobile_no" required autofocus />
                             </div>
                             <div class="form-group">
                                 {{ Form::label('Educational Qualification', null, ['class' => 'control-label']) }}

@@ -16,7 +16,7 @@ class EmployeeInfoController extends Controller
     public function index()
     {
        $items = EmployeeInfo::with('education')->get();
-       return $items;
+      // return $items;
         return view("admin.employeeinfo.index",compact('items'));
     }
 
@@ -39,6 +39,12 @@ class EmployeeInfoController extends Controller
     public function store(Request $request)
     {
        // return $request->all();
+       $this->validate($request,[
+        'employee_name'=> 'required',
+        'employee_email'=> 'required|unique:employee_infos',
+        'employee_mobile_no'=> 'required|unique:employee_infos',
+        'gender'=> 'required',
+     ]);
         $allData = new EmployeeInfo();
         $allData->employee_name = $request->employee_name;
         $allData->employee_email = $request->employee_email;
@@ -72,9 +78,11 @@ class EmployeeInfoController extends Controller
      * @param  \App\Models\EmployeeInfo  $employeeInfo
      * @return \Illuminate\Http\Response
      */
-    public function edit(EmployeeInfo $employeeInfo)
+    public function edit( $employeeInfo)
     {
-        //
+        $item = EmployeeInfo::with('education')->find($employeeInfo);
+        // return $item;
+        return view("admin.employeeinfo.edit",compact('item'));
     }
 
     /**
@@ -95,8 +103,10 @@ class EmployeeInfoController extends Controller
      * @param  \App\Models\EmployeeInfo  $employeeInfo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(EmployeeInfo $employeeInfo)
+    public function destroy( $employeeInfo)
     {
-        //
+        $data = EmployeeInfo::find($employeeInfo);
+        $data->delete();
+        return redirect()->route('admin.employeeinfo.index')->with('warning','EmployeeInfo Deleted successfully.');
     }
 }
