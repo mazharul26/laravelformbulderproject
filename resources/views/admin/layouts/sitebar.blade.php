@@ -41,7 +41,7 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="{{ route('employeeinfo.index') }}" class="nav-link">
+                    <a href="{{ route('admin.employeeinfo.index') }}" class="nav-link">
                       <i class="fa fa-circle nav-icon"></i>
                       <p>Emploee Info</p>
                     </a>

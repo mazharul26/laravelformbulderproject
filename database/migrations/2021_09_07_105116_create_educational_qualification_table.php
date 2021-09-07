@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEmployeeInfosTable extends Migration
+class CreateEducationalQualificationTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateEmployeeInfosTable extends Migration
      */
     public function up()
     {
-        Schema::create('employee_infos', function (Blueprint $table) {
+        Schema::create('educational_qualification', function (Blueprint $table) {
             $table->id();
-            $table->string('employee_name');
-            $table->string('employee_email')->unique();
-            $table->string('employee_mobile_no')->unique();
-            $table->string('gender');
-            $table->integer('status')->default(1);
+            $table->foreignId('employee_id')->constrained('employee_infos')->onUpdate('cascade')->onDelete('cascade');
+             $table->string('educational_qualification');
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ class CreateEmployeeInfosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('employee_infos');
+        Schema::dropIfExists('educational_qualification');
     }
 }

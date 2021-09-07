@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\EmployeeInfo;
+use App\Models\EducationalQualification;
 use Illuminate\Http\Request;
 
 class EmployeeInfoController extends Controller
@@ -14,7 +15,9 @@ class EmployeeInfoController extends Controller
      */
     public function index()
     {
-        return view("admin.employeeinfo.create");
+       $items = EmployeeInfo::with('education')->get();
+       return $items;
+        return view("admin.employeeinfo.index",compact('items'));
     }
 
     /**
@@ -24,7 +27,7 @@ class EmployeeInfoController extends Controller
      */
     public function create()
     {
-        //
+         return view("admin.employeeinfo.create");
     }
 
     /**
@@ -35,7 +38,21 @@ class EmployeeInfoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       // return $request->all();
+        $allData = new EmployeeInfo();
+        $allData->employee_name = $request->employee_name;
+        $allData->employee_email = $request->employee_email;
+        $allData->employee_mobile_no = $request->employee_mobile_no;
+        $allData->gender = $request->gender;
+        $allData->save();
+        $id = $allData->id;
+        foreach ($request->educational_qualification as $key => $value) {
+           $educationalData = new EducationalQualification();
+           $educationalData->educational_qualification = $request->educational_qualification[$key];
+           $educationalData->employee_id  = $id;
+           $educationalData->save();
+        }
+        return redirect()->route('admin.employeeinfo.index')->with('success','Employee created successfully.');
     }
 
     /**

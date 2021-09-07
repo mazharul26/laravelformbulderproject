@@ -17,5 +17,12 @@ use App\Http\Controllers\Admin\EmployeeInfoController;
 
 
 require __DIR__.'/auth.php';
-Route::resource('dashboard', DashboardController::class)->middleware(['auth']);
-Route::resource('employeeinfo', EmployeeInfoController::class)->middleware(['auth']);
+Route::middleware('auth')->group(function ()
+{
+		Route::resource('dashboard', DashboardController::class);
+
+    Route::name('admin.')->prefix('admin')->group(function () {
+			Route::resource('employeeinfo', EmployeeInfoController::class);
+
+	});
+}); 

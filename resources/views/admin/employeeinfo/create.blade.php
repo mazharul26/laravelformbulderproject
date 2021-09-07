@@ -33,27 +33,29 @@
                                 ?>
                             </div>
                         <?php }?>
-                        <form action="#" name="contact-form" method="post" enctype="multipart/form-data">
+                        <form action="{{route('admin.employeeinfo.store')}}" name="contact-form" method="post" enctype="multipart/form-data">
                            @csrf
                             <div class="form-group">
-                                <x-label for="name" :value="__('Name')" />
-                                <x-input  type="text" id="name" class="form-control"  name="name" :value="old('name')" required autofocus />
+                                <x-label for="employee_name" :value="__('Name')" />
+                                <x-input  type="text" id="employee_name" class="form-control"  
+                                name="employee_name" :value="old('employee_name')" required autofocus />
                             </div>
                             <div class="form-group">
-                                <x-label for="email" :value="__('Email')" />
-                                <x-input id="email" class="form-control" type="email" name="email" :value="old('email')" required autofocus />
+                                <x-label for="employee_email" :value="__('Email')" />
+                                <x-input id="email" class="form-control" type="email"
+                                 name="employee_email" :value="old('employee_email')" required autofocus />
                             </div>
                             <div class="form-group">
-                                <x-label for="mobile_no" :value="__('Mobile No')" />
-                                <x-input id="mobile_no" class="form-control" type="text" name="mobile_no" :value="old('mobile_no')" required autofocus />
+                                <x-label for="employee_mobile_no" :value="__('Mobile No')" />
+                                <x-input id="employee_mobile_no" class="form-control" type="text" name="employee_mobile_no" :value="old('employee_mobile_no')" required autofocus />
                             </div>
                             <div class="form-group">
                                 {{ Form::label('Educational Qualification', null, ['class' => 'control-label']) }}
                                 @php
-                                    echo Form::checkbox('designation', '1').' SSC ';
-                                    echo Form::checkbox('designation', '2').' HSC ';
-                                    echo Form::checkbox('designation', '3').' Honous ';
-                                    echo Form::checkbox('designation', '4').' Masters ';
+                                    echo Form::checkbox('educational_qualification[]', 'SSC').' SSC ';
+                                    echo Form::checkbox('educational_qualification[]', 'HSC').' HSC ';
+                                    echo Form::checkbox('educational_qualification[]', 'Honous').' Honous ';
+                                    echo Form::checkbox('educational_qualification[]', 'Masters').' Masters ';
                                 @endphp
                             </div>
                             <div class="form-group">
@@ -64,12 +66,7 @@
                                     echo Form::radio('gender', '3').' other ';
                                 @endphp
                             </div>
-
-                            <div class="form-group">
-
-                                <x-label for="mobile_no" :value="__('Massage')" />
-                                <textarea class="form-control" name="message" id="message" rows="4"></textarea>
-                            </div>
+                         
                             <div class="form-group text-right">
                                 <button class="btn btn-success">Save</button>
                             </div>
@@ -93,8 +90,9 @@
                     name: "required",
                     email: "required",
                     mobile_no: "required",
-                    subject: "required",
-                    message: "required",
+                    gender: "required",
+                    educational_qualification: "required",
+                   
                     name: {
                         required: true
                     },
@@ -108,10 +106,10 @@
                         maxlength: 10,
                         number: true
                     },
-                    subject: {
+                    gender: {
                         required: true
                     },
-                    message: {
+                    educational_qualification: {
                         required: true
                     }
                 },
@@ -127,8 +125,8 @@
                         minlength: "Mobile number must be min 10 characters long",
                         maxlength: "Mobile number must not be more than 10 characters long"
                     },
-                    subject: "The subject field is required",
-                    message: "The message field is required"
+                    gender: "The gender field is required",
+                    educational_qualification: "The educational qualification field is required"
                 },
                 submitHandler: function(form) {
                     form.submit();
