@@ -92,9 +92,28 @@ class EmployeeInfoController extends Controller
      * @param  \App\Models\EmployeeInfo  $employeeInfo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, EmployeeInfo $employeeInfo)
+    public function update(Request $request,$employeeInfo)
     {
-        //
+        $this->validate($request,[
+        'employee_name'=> 'required',
+        'employee_email'=> 'required|unique:employee_infos,employee_email,'.$employeeInfo,
+        'employee_mobile_no'=> 'required|unique:employee_infos,employee_mobile_no,'.$employeeInfo,
+        'gender'=> 'required',
+     ]);
+        $allData =  EmployeeInfo::find($employeeInfo);
+        $allData->employee_name = $request->employee_name;
+        $allData->employee_email = $request->employee_email;
+        $allData->employee_mobile_no = $request->employee_mobile_no;
+        $allData->gender = $request->gender;
+        $allData->save();
+        $id = $allData->id;
+        foreach ($request->educational_qualification as $key => $value) {
+           $educationalData =  EducationalQualification::find($request->employee_id[$key]);
+           $educationalData->educational_qualification = $request->educational_qualification[$key];
+           $educationalData->employee_id  = $id;
+           $educationalData->save();
+        }
+        return redirect()->route('admin.employeeinfo.index')->with('info','Employee updated successfully.');
     }
 
     /**

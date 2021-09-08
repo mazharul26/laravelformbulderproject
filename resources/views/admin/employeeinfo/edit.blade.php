@@ -43,6 +43,7 @@
                                 <x-label for="employee_mobile_no" :value="__('Mobile No')" />
                                 <x-input id="employee_mobile_no" class="form-control" type="text" name="employee_mobile_no" :value="$item->employee_mobile_no" required autofocus />
                             </div>
+                            
                             <div class="form-group">
                                 {{ Form::label('Educational Qualification', null, ['class' => 'control-label']) }}
                                 @php
