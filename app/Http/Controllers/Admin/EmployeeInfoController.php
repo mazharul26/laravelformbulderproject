@@ -129,3 +129,4 @@ class EmployeeInfoController extends Controller
         return redirect()->route('admin.employeeinfo.index')->with('warning','EmployeeInfo Deleted successfully.');
     }
 }
+
