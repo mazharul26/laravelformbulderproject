@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laratrust\Traits\LaratrustUserTrait;
 use Laravel\Sanctum\HasApiTokens;
-
+use App\Notifications\OffersNotification;
 class User extends Authenticatable
 {
     use LaratrustUserTrait;
@@ -45,4 +45,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+
+
 }
