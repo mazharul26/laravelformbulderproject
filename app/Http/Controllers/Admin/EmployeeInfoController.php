@@ -16,6 +16,8 @@ class EmployeeInfoController extends Controller
     public function index()
     {
        $items = EmployeeInfo::with('education')->get();
+       //$item = $_SERVER['HTTP_CLIENT_IP'];
+
       // return $items;
         return view("admin.employeeinfo.index",compact('items'));
     }

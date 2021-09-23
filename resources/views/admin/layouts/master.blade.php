@@ -27,6 +27,21 @@
   <link rel="stylesheet" href="{{ asset('admindashboard/plugins/css/summernote-bs4.min.css') }}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   @yield('css')
+  <SCRIPT language=JavaScript>
+
+    <!-- http://www.spacegun.co.uk -->
+
+    var message = "Do not inspect Element.";
+
+    function rtclickcheck(keyp){ if (navigator.appName == "Netscape" && keyp.which == 3)
+    { alert(message); return false; }
+
+    if (navigator.appVersion.indexOf("MSIE") != -1 && event.button == 2)
+     { alert(message); return false; } }
+
+    document.onmousedown = rtclickcheck;
+
+    </SCRIPT>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
