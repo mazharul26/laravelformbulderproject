@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\EmployeeInfoController;
+use App\Http\Controllers\Admin\SmsController;
 use App\Http\Controllers\SslCommerzPaymentController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\MyController;
@@ -50,6 +51,7 @@ Route::get('export', [MyController::class, 'export'])->name('export');
 Route::post('import', [MyController::class, 'import'])->name('import');
 //SSLCOMMERZ END
 Route::get("email", [MailerController::class, "email"])->name("email");
+Route::get("sms", [SmsController::class, "index"])->name("sms");
 
 Route::post("send-email", [MailerController::class, "composeEmail"])->name("send-email");
 

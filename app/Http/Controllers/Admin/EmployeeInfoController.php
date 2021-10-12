@@ -47,6 +47,7 @@ class EmployeeInfoController extends Controller
         'employee_mobile_no'=> 'required|unique:employee_infos',
         'gender'=> 'required',
      ]);
+
         $allData = new EmployeeInfo();
         $allData->employee_name = $request->employee_name;
         $allData->employee_email = $request->employee_email;
