@@ -3,8 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\EmployeeInfoController;
+use App\Http\Controllers\Admin\SmsController;
 use App\Http\Controllers\SslCommerzPaymentController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\MyController;
+use App\Http\Controllers\MailerController;
 
 
 /*
@@ -43,4 +46,13 @@ Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
 Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
 
 Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
+Route::get('importExportView', [MyController::class, 'importExportView']);
+Route::get('export', [MyController::class, 'export'])->name('export');
+Route::post('import', [MyController::class, 'import'])->name('import');
 //SSLCOMMERZ END
+Route::get("email", [MailerController::class, "email"])->name("email");
+Route::get("sms", [SmsController::class, "index"])->name("sms");
+
+Route::post("send-email", [MailerController::class, "composeEmail"])->name("send-email");
+route::view('department','backend.department');
+
