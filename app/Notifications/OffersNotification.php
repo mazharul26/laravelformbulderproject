@@ -11,16 +11,21 @@ class OffersNotification extends Notification
 {
     use Queueable;
     private $offerData;
+    public $message;
+    public $checkout_id;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($offerData)
+    public function __construct($message, $checkout_id)
     {
-        $this->offerData = $offerData;
+        $this->message     = $message;
+        $this->checkout_id = $checkout_id;
+
     }
+
 
     /**
      * Get the notification's delivery channels.
@@ -30,7 +35,7 @@ class OffersNotification extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail','database'];
+        return ['database'];
     }
 
     /**
@@ -39,14 +44,7 @@ class OffersNotification extends Notification
      * @param  mixed  $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
-    public function toMail($notifiable)
-    {
-        return (new MailMessage)
-            ->name($this->offerData['name'])
-            ->line($this->offerData['body'])
-            ->action($this->offerData['offerText'], $this->offerData['offerUrl'])
-            ->line($this->offerData['thanks']);
-    }
+
 
     /**
      * Get the array representation of the notification.
@@ -57,7 +55,8 @@ class OffersNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'offer_id' => $this->offerData['offer_id']
+            'message'     => $this->message,
+            'checkout_id' => $this->checkout_id,
         ];
     }
 }

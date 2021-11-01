@@ -19,6 +19,7 @@ class Department extends Component
         $this->code = '';
         $this->hid = '';
     }
+    
     public function store()
     {
        $validation = $this->validate([

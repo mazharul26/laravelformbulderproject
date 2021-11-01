@@ -46,6 +46,12 @@
                       <p>Emploee Info</p>
                     </a>
                   </li>
+                  <li class="nav-item">
+                    <a href="{{ url('department') }}" class="nav-link">
+                      <i class="fa fa-circle nav-icon"></i>
+                      <p>Department</p>
+                    </a>
+                  </li>
 
                 </ul>
               </li>
