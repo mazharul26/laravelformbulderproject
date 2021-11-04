@@ -11,59 +11,23 @@ class MailerController extends Controller {
 
     // =============== [ Email ] ===================
     public function email() {
-        return view("email");
+        ini_set( 'display_errors', 1 );
+        //error_reporting( E_ALL );
+        $from = "md.mazharuli30@gmail.com";
+        $to = "md.mazharuli30@gmail.com";
+        $subject = 'I am Azam Khan';
+        $message = "ok";
+        $headers = "From:" . $from;
+        if(mail($to,$subject,$message, $headers)) {
+        echo "The email message was sent.";
+        } else {
+        echo "The email message was not sent.";
+        }
     }
 
 
     // ========== [ Compose Email ] ================
     public function composeEmail(Request $request) {
-        require base_path("vendor/autoload.php");
-        //return $request->all();
-        $mail = new PHPMailer(true);     // Passing `true` enables exceptions
 
-        try {
-
-            // Email server settings
-            $mail->SMTPDebug = 0;
-            $mail->isSMTP();
-            $mail->Host = 'smtp.gmail.com';             //  smtp host
-            $mail->SMTPAuth = true;
-            $mail->Username = 'md.mazharuli30@gmail.com';   //  sender username
-            $mail->Password = 'mazharul30$#';       // sender password
-            $mail->SMTPSecure = 'tls';                  // encryption - ssl/tls
-            $mail->Port = 587;                          // port - 587/465
-
-            $mail->setFrom('md.mazharuli30@gmail.com', 'Md.Mazharul Islam');
-            $mail->addAddress($request->emailRecipient);
-            $mail->addCC($request->emailCc);
-            $mail->addBCC($request->emailBcc);
-
-            $mail->addReplyTo('md.mazharuli30@gmail.com', 'Md.Mazharul Islam');
-
-            if(isset($_FILES['emailAttachments'])) {
-                for ($i=0; $i < count($_FILES['emailAttachments']['tmp_name']); $i++) {
-                    $mail->addAttachment($_FILES['emailAttachments']['tmp_name'][$i], $_FILES['emailAttachments']['name'][$i]);
-                }
-            }
-
-
-            $mail->isHTML(true);                // Set email content format to HTML
-
-            $mail->Subject = $request->emailSubject;
-            $mail->Body    = $request->emailBody;
-
-            // $mail->AltBody = plain text version of email body;
-
-            if( !$mail->send() ) {
-                return back()->with("failed", "Email not sent.")->withErrors($mail->ErrorInfo);
-            }
-
-            else {
-                return back()->with("success", "Email has been sent.");
-            }
-
-        } catch (Exception $e) {
-             return back()->with('error','Message could not be sent.');
-        }
     }
 }

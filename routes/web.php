@@ -53,6 +53,20 @@ Route::post('import', [MyController::class, 'import'])->name('import');
 Route::get("email", [MailerController::class, "email"])->name("email");
 Route::get("sms", [SmsController::class, "index"])->name("sms");
 
-Route::post("send-email", [MailerController::class, "composeEmail"])->name("send-email");
+Route::post("send-emails", [MailerController::class, "composeEmail"])->name("send-email");
 route::view('department','backend.department');
+
+Route::get('send-mail', function () {
+
+    $details = [
+        'title' => 'Mail from ItSolutionStuff.com',
+        'body' => 'This is for testing email using smtp'
+    ];
+
+    \Mail::send('emails/myTestMail', $details, function($message) use ($details) {
+        $message->to('admin@admin.com')->subject('User Info');
+        $message->from('md.mazharuli30@gmail.com');
+    });
+    dd("Email is Sent.");
+});
 
