@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\MyTestMail;
 use Illuminate\Http\Request;
 
 use PHPMailer\PHPMailer\PHPMailer;
@@ -10,24 +11,24 @@ use PHPMailer\PHPMailer\Exception;
 class MailerController extends Controller {
 
     // =============== [ Email ] ===================
-    public function email() {
-        ini_set( 'display_errors', 1 );
-        //error_reporting( E_ALL );
-        $from = "md.mazharuli30@gmail.com";
-        $to = "md.mazharuli30@gmail.com";
-        $subject = 'I am Azam Khan';
-        $message = "ok";
-        $headers = "From:" . $from;
-        if(mail($to,$subject,$message, $headers)) {
-        echo "The email message was sent.";
-        } else {
-        echo "The email message was not sent.";
-        }
+    public function sendmail()
+     {
+        $data = [
+            'title' => 'Mail from ItSolutionStuff.com',
+            'body' => 'This is for testing email using smtp',
+            'email' => 'md.mazharuli30@gmail.com',
+        ];
+        \Mail::to("md.mazharuli30@gmail.com", "Green life")->send(new MyTestMail($data));
+
+        // \Mail::send('emails/myTestMail', $data, function($message) use ($data) {
+        //     $message->to('admin@admin.com')->subject('User Info');
+        //     $message->from($data['email']);
+        // });
+
+
+        dd("Email is Sent.");
     }
 
 
-    // ========== [ Compose Email ] ================
-    public function composeEmail(Request $request) {
 
-    }
 }

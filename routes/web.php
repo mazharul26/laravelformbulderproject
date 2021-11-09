@@ -8,7 +8,7 @@ use App\Http\Controllers\SslCommerzPaymentController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\MyController;
 use App\Http\Controllers\MailerController;
-
+use App\Mail\MyTestMail;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,23 +50,12 @@ Route::get('importExportView', [MyController::class, 'importExportView']);
 Route::get('export', [MyController::class, 'export'])->name('export');
 Route::post('import', [MyController::class, 'import'])->name('import');
 //SSLCOMMERZ END
-Route::get("email", [MailerController::class, "email"])->name("email");
+
 Route::get("sms", [SmsController::class, "index"])->name("sms");
 
-Route::post("send-emails", [MailerController::class, "composeEmail"])->name("send-email");
+// Route::post("send-emails", [MailerController::class, "composeEmail"])->name("send-email");
 route::view('department','backend.department');
 
-Route::get('send-mail', function () {
+Route::get("send-mail", [MailerController::class, "sendmail"])->name("email");
 
-    $details = [
-        'title' => 'Mail from ItSolutionStuff.com',
-        'body' => 'This is for testing email using smtp'
-    ];
-
-    \Mail::send('emails/myTestMail', $details, function($message) use ($details) {
-        $message->to('admin@admin.com')->subject('User Info');
-        $message->from('md.mazharuli30@gmail.com');
-    });
-    dd("Email is Sent.");
-});
 
