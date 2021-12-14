@@ -26,6 +26,7 @@
   <!-- summernote -->
   <link rel="stylesheet" href="{{ asset('admindashboard/plugins/css/summernote-bs4.min.css') }}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="{{ asset('css/toastr.min.css') }}">
   @yield('css')
   <SCRIPT language=JavaScript>
 
@@ -107,6 +108,48 @@
 
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ asset('admindashboard/dist/js/dashboard.js') }}"></script>
+<script src="{{ asset('js/toastr.min.js') }}"></script>
+<script>
+    @if (session()->has('message')) toastr.{{ session('type') }}('{{ session('message') }}')
+     @endif
+</script>
+<script>
+    @if(Session::has('message'))
+    toastr.options =
+    {
+        "closeButton" : true,
+        "progressBar" : true
+    }
+            toastr.success("{{ session('message') }}");
+    @endif
+
+    @if(Session::has('error'))
+    toastr.options =
+    {
+        "closeButton" : true,
+        "progressBar" : true
+    }
+            toastr.error("{{ session('error') }}");
+    @endif
+
+    @if(Session::has('info'))
+    toastr.options =
+    {
+        "closeButton" : true,
+        "progressBar" : true
+    }
+            toastr.info("{{ session('info') }}");
+    @endif
+
+    @if(Session::has('warning'))
+    toastr.options =
+    {
+        "closeButton" : true,
+        "progressBar" : true
+    }
+            toastr.warning("{{ session('warning') }}");
+    @endif
+  </script>
 @yield('js')
 </body>
 </html>

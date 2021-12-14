@@ -61,7 +61,7 @@ class EmployeeInfoController extends Controller
            $educationalData->employee_id  = $id;
            $educationalData->save();
         }
-        return redirect()->route('admin.employeeinfo.index')->with('success','Employee created successfully.');
+        return redirect()->route('admin.employeeinfo.index')->with('message','Data added Successfully');
     }
 
     /**

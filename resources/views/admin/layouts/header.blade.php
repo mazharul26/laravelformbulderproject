@@ -42,6 +42,17 @@
           <a href="#" class="dropdown-item">
             <i class="fa fa-user mr-2"></i>Profile
           </a>
+          @php
+              $user = App\Models\User::find(1);
+          @endphp
+
+         @foreach ($user->unreadNotifications as $notification)
+
+        <a href="#" class="dropdown-item">
+            <i class="fa fa-user mr-2"></i>{{$notification->data['message'] ?? ''}}
+          </a>
+          @endforeach
+
           <div class="dropdown-divider"></div>
 
             <a  class="dropdown-item"
