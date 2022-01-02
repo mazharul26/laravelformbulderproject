@@ -8,8 +8,10 @@
     <p> <b>My mail: {{ Auth()->user()->name }}</b>
 
     </p>
-    <p> <b>Title:</b> {{ $data['email'] ?? '' }}</p>
-    <p><b>Message:</b> {{ $data['body'] ?? ''}}</p>
+
+    <p> <b>Email:</b> {{ $email ?? '' }}</p>
+    <p> <b>Title:</b> {{ $title ?? '' }}</p>
+    <p><b>Message:</b> {{ $body ?? ''}}</p>
     <p>Thank you</p>
 </body>
 </html>

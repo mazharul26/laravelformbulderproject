@@ -14,19 +14,20 @@ class MailerController extends Controller {
     public function sendmail()
      {
         $data = [
-            'title' => 'Mail from ItSolutionStuff.com',
+            'title' => 'SARBS Communication LTD.',
             'body' => 'This is for testing email using smtp',
-            'email' => 'md.mazharuli30@gmail.com',
+            'email' => 'mazharul@gmail.com',
         ];
-        \Mail::to("md.mazharuli30@gmail.com", "Green life")->send(new MyTestMail($data));
+        // \Mail::to("admin@gmail.com", "Great")->send(new MyTestMail($data));
+        // dd("Email is Sent.");
+           $emails = ['mazharul.islam@sarbs.net','md.mazharuli30@gmail.com'];
 
-        // \Mail::send('emails/myTestMail', $data, function($message) use ($data) {
-        //     $message->to('admin@admin.com')->subject('User Info');
-        //     $message->from($data['email']);
-        // });
-
-
-        dd("Email is Sent.");
+            \Mail::send('emails.myTestMail', $data, function($message) use ($emails)
+            {
+                $message->to($emails)->subject('Warehouse Inventory');
+            });
+            return('Email is Sent.');
+            exit;
     }
 
 

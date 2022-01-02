@@ -42,27 +42,28 @@
           <a href="#" class="dropdown-item">
             <i class="fa fa-user mr-2"></i>Profile
           </a>
+          <a  class="dropdown-item"
+          title="Log Out" onclick="event.preventDefault();
+           document.getElementById('logout-form').submit();"><i class="fa fa-trash" aria-hidden="true"></i>
+</i>Log Out</a>
+           <form action="{{ route('logout') }}" id="logout-form" method="POST">
+               @csrf
+
+           </form>
           @php
               $user = App\Models\User::find(1);
           @endphp
+    @forelse ($user->unreadNotifications as $notification)
+    <a class="dropdown-item" href="">{{ $notification->data['message'] }}</a>
+    @empty
+    <a class="dropdown-item" href="javascript:void(0)">No notification available</a>
+    @endforelse
+    <a id="no-notification-available" class="dropdown-item text-right" href="">Clear</a>
 
-         @foreach ($user->unreadNotifications as $notification)
-
-        <a href="#" class="dropdown-item">
-            <i class="fa fa-user mr-2"></i>{{$notification->data['message'] ?? ''}}
-          </a>
-          @endforeach
 
           <div class="dropdown-divider"></div>
 
-            <a  class="dropdown-item"
-            title="Log Out" onclick="event.preventDefault();
-             document.getElementById('logout-form').submit();"><i class="fa fa-trash" aria-hidden="true"></i>
-</i>Log Out</a>
-             <form action="{{ route('logout') }}" id="logout-form" method="POST">
-                 @csrf
 
-             </form>
 
 
 

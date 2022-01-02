@@ -9,7 +9,7 @@ class SmsController extends Controller
 {
     public function index()
     {
-        $number = '01515607893';
+        $number = '01811420480';
         $welcome = 'welcome%20to%20amar%20online%20school.';
         $class = "Class:%20".rawurlencode(9).',';
         $password = "Your%20Password:".'12345678';
