@@ -1,18 +1,18 @@
 <?php
+
 namespace App\Console\Commands;
 
 use App\Models\User;
 use Illuminate\Console\Command;
-use Carbon\Carbon;
 
-class DatabaseBackUp extends Command
+class EveryMinutesSendingMail extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'database:backup';
+    protected $signature = 'email:everyminutessendingmail';
 
     /**
      * The console command description.
@@ -38,17 +38,15 @@ class DatabaseBackUp extends Command
      */
     public function handle()
     {
-        //  User::get();
-        \Log::info("Cron is working fine!");
-        $filename = "backup-".Carbon::now()->format('Y-m-d').".sql";
+        \Log::info("Mail sending successfully.");
+        $data =  User::get();
+        // \Mail::to("admin@gmail.com", "Great")->send(new MyTestMail($data));
+        // dd("Email is Sent.");
+           $emails = ['mazharul.islam@sarbs.net','md.mazharuli30@gmail.com'];
 
-        $command = "mysqldump --user=" . env('DB_USERNAME') ." --password=" . env('DB_PASSWORD') . " --host=" . env('DB_HOST') . " " . env('DB_DATABASE') . "  | gzip > " . storage_path() . "/app/backup/" . $filename;
-
-        $returnVar = NULL;
-        $output  = NULL;
-
-        exec($command, $output, $returnVar);
-
-
+            \Mail::send('emails.myTestMail', ['datas'=>$data], function($message) use ($emails)
+            {
+                $message->to($emails)->subject('Warehouse Inventory');
+            });
     }
 }

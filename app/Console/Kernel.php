@@ -13,8 +13,10 @@ class Kernel extends ConsoleKernel
      * @var array
      */
 
+
     protected $commands = [
-        'App\Console\Commands\DatabaseBackUp'
+        Commands\DatabaseBackUp::class,
+        Commands\EveryMinutesSendingMail::class,
     ];
 
     /**
@@ -27,6 +29,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
         $schedule->command('database:backup')->everyMinute();
+        $schedule->command('email:everyminutessendingmail')->everyMinute();
     }
 
     /**

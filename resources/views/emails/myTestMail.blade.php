@@ -5,13 +5,15 @@
 </head>
 <body>
     <h1>Md. Mazharul Islam</h1>
-    <p> <b>My mail: {{ Auth()->user()->name }}</b>
+    <p> <b>My mail: </b>
 
     </p>
+    @foreach ($datas as $data)
+    <p> <b>Email:</b>{{ $data->email ?? ''}} </p>
+    <p> <b>Name:</b> {{ $data->name ?? ''}}</p>
 
-    <p> <b>Email:</b> {{ $email ?? '' }}</p>
-    <p> <b>Title:</b> {{ $title ?? '' }}</p>
-    <p><b>Message:</b> {{ $body ?? ''}}</p>
+    @endforeach
+
     <p>Thank you</p>
 </body>
 </html>

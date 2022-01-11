@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\EmployeeInfoController;
 use App\Http\Controllers\Admin\SmsController;
+use App\Http\Controllers\AutoAddressController;
 use App\Http\Controllers\SslCommerzPaymentController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\MyController;
@@ -21,6 +22,7 @@ use App\Mail\MyTestMail;
 |
 */
 
+Route::get('auto-complete-address', [AutoAddressController::class, 'googleAutoAddress']);
 
 require __DIR__.'/auth.php';
 Route::middleware('auth')->group(function ()
