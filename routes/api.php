@@ -17,11 +17,11 @@ use App\Http\Controllers\Api\ProductController;
 */
 
 Route::middleware('auth:api')->group( function () {
-
+    Route::resource('users', ProductController::class);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::resource('users', ProductController::class);
+
 

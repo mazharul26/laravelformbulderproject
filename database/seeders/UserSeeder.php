@@ -16,6 +16,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+
         $superadmin = \App\Models\User::factory()->create([
 
             'name' => 'Super-admin',
@@ -36,5 +37,6 @@ class UserSeeder extends Seeder
             'remember_token' => Str::random(10),
         ]);
         $admin->attachRole('admin');
+
     }
 }

@@ -12,7 +12,7 @@ use App\Notifications\OffersNotification;
 class User extends Authenticatable
 {
     use LaratrustUserTrait;
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable,HasApiTokens;
 
     /**
      * The attributes that are mass assignable.

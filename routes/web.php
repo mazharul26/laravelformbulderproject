@@ -9,6 +9,7 @@ use App\Http\Controllers\SslCommerzPaymentController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\MyController;
 use App\Http\Controllers\MailerController;
+use App\Http\Controllers\UserController;
 use App\Mail\MyTestMail;
 
 /*
@@ -34,6 +35,7 @@ Route::middleware('auth')->group(function ()
 
 	});
 });
+Route::get('display-user', [UserController::class, 'index']);
 Route::get('/send-notification', [NotificationController::class, 'sendOfferNotification']);
 
 // SSLCOMMERZ Start
