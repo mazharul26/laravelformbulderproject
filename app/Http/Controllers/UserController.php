@@ -15,7 +15,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
          $ip =$_SERVER['REMOTE_ADDR'];  //Dynamic IP address */
-        $ip = '103.83.207.42'; /* Static IP address */
+        $ip = '23.29.122.202'; /* Static IP address */
         $currentUserInfo = Location::get($ip);
 
         return view('user', compact('currentUserInfo'));

@@ -176,6 +176,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Stevebauman\Location\LocationServiceProvider::class,
+        //FarhanWazir\GoogleMaps\GMapsServiceProvider::class,
+
 
     ],
 
@@ -234,6 +236,8 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'Location' => 'Stevebauman\Location\Facades\Location',
+      //  'GMaps' => FarhanWazir\GoogleMaps\Facades\GMapsFacade::class,
+
 
 
 

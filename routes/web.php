@@ -9,6 +9,7 @@ use App\Http\Controllers\SslCommerzPaymentController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\MyController;
 use App\Http\Controllers\MailerController;
+use App\Http\Controllers\StripeController;
 use App\Http\Controllers\UserController;
 use App\Mail\MyTestMail;
 
@@ -59,7 +60,12 @@ Route::get("sms", [SmsController::class, "index"])->name("sms");
 
 // Route::post("send-emails", [MailerController::class, "composeEmail"])->name("send-email");
 route::view('department','backend.department');
+route::view('allusers','backend.users');
 
 Route::get("send-mail", [MailerController::class, "sendmail"])->name("email");
+// strive gat way
+
+Route::get('/stripe', [StripeController::class, 'stripe']);
+Route::post('/stripe-post', [StripeController::class, 'stripePost'])->name('stripe.post');
 
 
