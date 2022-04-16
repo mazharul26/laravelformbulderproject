@@ -12,6 +12,7 @@
         "laravel/nexmo-notification-channel": "^2.5",
         "laravel/passport": "^10.3",
         "laravel/sanctum": "^2.14",
+        "laravel/socialite": "^5.5",
         "laravel/tinker": "^2.5",
         "laravelcollective/html": "^6.2",
         "livewire/livewire": "^2.6",

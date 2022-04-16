@@ -177,6 +177,7 @@ return [
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Stevebauman\Location\LocationServiceProvider::class,
         //FarhanWazir\GoogleMaps\GMapsServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
 
 
     ],
@@ -237,6 +238,8 @@ return [
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'Location' => 'Stevebauman\Location\Facades\Location',
       //  'GMaps' => FarhanWazir\GoogleMaps\Facades\GMapsFacade::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+
 
 
 

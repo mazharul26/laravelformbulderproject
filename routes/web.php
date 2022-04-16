@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\EmployeeInfoController;
 use App\Http\Controllers\Admin\SmsController;
 use App\Http\Controllers\AutoAddressController;
+use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\SslCommerzPaymentController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\MyController;
@@ -68,4 +69,6 @@ Route::get("send-mail", [MailerController::class, "sendmail"])->name("email");
 Route::get('/stripe', [StripeController::class, 'stripe']);
 Route::post('/stripe-post', [StripeController::class, 'stripePost'])->name('stripe.post');
 
+Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
+Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 

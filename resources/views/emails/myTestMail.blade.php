@@ -4,15 +4,9 @@
     <title>ItsolutionStuff.com</title>
 </head>
 <body>
-    <h1>Md. Mazharul Islam</h1>
-    <p> <b>My mail: </b>
-
-    </p>
-    @foreach ($datas as $data)
-    <p> <b>Email:</b>{{ $data->email ?? ''}} </p>
-    <p> <b>Name:</b> {{ $data->name ?? ''}}</p>
-
-    @endforeach
+    <h1>Name : {{$details['name']}}</h1>
+    <h1>Email : {{$details['email']}}</h1>
+    <h1>Title : {{$details['title']}}</h1>
 
     <p>Thank you</p>
 </body>
