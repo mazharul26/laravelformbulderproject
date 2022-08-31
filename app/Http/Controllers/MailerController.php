@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\MatchSendEmail;
 use App\Mail\MyTestMail;
 use Illuminate\Http\Request;
 
@@ -13,16 +14,20 @@ class MailerController extends Controller {
     // =============== [ Email ] ===================
     public function sendmail()
      {
-        $details = [
-            'title' => "This is test Mail",
-            'name' => "Md Mazharul Islam",
-            'email' => "mazharul@gmail.com",
-        ];
-        \Mail::to('mazharul.islam@sarbs.net')
-        ->cc('md.mazharuli30@gmail.com')
-        ->bcc('md.mazharuli26@yahoo.com')
-        ->send(new MyTestMail($details));
-        dd("Sending Mail Successfully.");
+        // $details = [
+        //     'title' => "This is test Mail",
+        //     'name' => "Md Mazharul Islam",
+        //     'email' => "mazharul@gmail.com",
+        // ];
+        // \Mail::to('mazharul.islam@sarbs.net')
+        // ->cc('md.mazharuli30@gmail.com')
+        // ->bcc('md.mazharuli26@yahoo.com')
+        // ->send(new MyTestMail($details));
+        // dd("Sending Mail Successfully.");
+
+        $emailJob = new MatchSendEmail();
+        dispatch($emailJob);
+
     }
 
 

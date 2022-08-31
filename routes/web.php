@@ -13,6 +13,7 @@ use App\Http\Controllers\MailerController;
 use App\Http\Controllers\StripeController;
 use App\Http\Controllers\UserController;
 use App\Mail\MyTestMail;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,10 @@ use App\Mail\MyTestMail;
 */
 
 Route::get('auto-complete-address', [AutoAddressController::class, 'googleAutoAddress']);
+route::get('sendmail',function(){
+Artisan::call('email:everyminutessendingmail');
+return "successfully sending mail";
+});
 
 require __DIR__.'/auth.php';
 Route::middleware('auth')->group(function ()
@@ -39,7 +44,7 @@ Route::middleware('auth')->group(function ()
 });
 Route::get('display-user', [UserController::class, 'index']);
 Route::get('/send-notification', [NotificationController::class, 'sendOfferNotification']);
-
+  Route::get('notificationsMarkAsAllRead', [NotificationController::class, "notificationsMarkAsAllRead"])->name("notifications.markAsAllRead");
 // SSLCOMMERZ Start
 Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
 Route::get('/example2', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);

@@ -40,13 +40,12 @@ class EveryMinutesSendingMail extends Command
     {
         \Log::info("Mail sending successfully.");
         $data =  User::get();
-        // \Mail::to("admin@gmail.com", "Great")->send(new MyTestMail($data));
-        // dd("Email is Sent.");
+
            $emails = ['mazharul.islam@sarbs.net','md.mazharuli30@gmail.com'];
 
             \Mail::send('emails.myTestMail', ['datas'=>$data], function($message) use ($emails)
             {
-                $message->to($emails)->subject('Warehouse Inventory');
+                $message->to($emails)->subject('Laravel Test Inventory');
             });
     }
 }

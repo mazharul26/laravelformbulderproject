@@ -21,15 +21,24 @@ class NotificationController extends Controller
     }
 
     public function sendOfferNotification() {
-        $userSchema = User::first();
+        $userSchema = User::find(Auth()->user()->id);
 
         $offerData =  'You received an offer.';
 
 
         // Notification::send($userSchema, new OffersNotification($offerData));
 
-        $userSchema->notify(new OffersNotification(Auth::user()->name .$offerData, 12));
+        $userSchema->notify(new OffersNotification(Auth::user()->name.$offerData, 12));
         return redirect('dashboard')->with('success','Notification send successfully.');
 
+    }
+
+    public function notificationsMarkAsAllRead()
+    {
+
+     $user = User::find(Auth()->user()->id);
+    // return $user;
+     $user->notifications()->delete();
+        return back();
     }
 }

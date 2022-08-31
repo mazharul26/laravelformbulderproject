@@ -51,14 +51,14 @@
 
            </form>
           @php
-              $user = App\Models\User::find(1);
+              $user = App\Models\User::find(Auth()->user()->id);
           @endphp
     @forelse ($user->unreadNotifications as $notification)
     <a class="dropdown-item" href="">{{ $notification->data['message'] }}</a>
     @empty
     <a class="dropdown-item" href="javascript:void(0)">No notification available</a>
     @endforelse
-    <a id="no-notification-available" class="dropdown-item text-right" href="">Clear</a>
+    <a id="no-notification-available" class="dropdown-item text-right" href="{{route('notifications.markAsAllRead')}}">Clear</a>
 
 
           <div class="dropdown-divider"></div>
